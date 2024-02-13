@@ -78,7 +78,7 @@ async function run() {
 
 				await git.add(file.dest)
 
-				// Commit each file separately, if option is set to false commit all files at once later
+				// Commit each file separately if the option is set to false commit all files at once later
 				if (COMMIT_EACH_FILE === true) {
 					const hasChanges = await git.hasChanges()
 
@@ -86,7 +86,7 @@ async function run() {
 
 					core.debug(`Creating commit for file(s) ${ file.dest }`)
 
-					// Use different commit/pr message based on if the source is a directory or file
+					// Use a different commit/pr message based on if the source is a directory or file
 					const directory = isDirectory ? 'directory' : ''
 					const otherFiles = isDirectory ? 'and copied all sub files/folders' : ''
 					const useOriginalCommitMessage = ORIGINAL_MESSAGE && git.isOneCommitPush() && arrayEquals(await git.getChangesFromLastCommit(file.source), await git.changes(file.dest))
