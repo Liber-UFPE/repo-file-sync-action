@@ -72,7 +72,7 @@ async function run() {
 				const source = isDirectory ? `${ addTrailingSlash(file.source) }` : file.source
 				const dest = isDirectory ? `${ addTrailingSlash(localDestination) }` : localDestination
 
-				if (isDirectory) core.info(`Source ${ source } is directory`)
+				if (isDirectory) core.info(`${ file.source } source is directory`)
 
 				await copy(source, dest, isDirectory, file)
 
